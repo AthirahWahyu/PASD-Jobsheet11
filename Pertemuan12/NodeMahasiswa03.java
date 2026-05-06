@@ -7,4 +7,4 @@ public class NodeMahasiswa03 {
         this.data = data;
         this.next = next;
     }
-}
+} 

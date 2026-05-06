@@ -19,4 +19,4 @@ public class Mahasiswa03 {
     void tampilInformasi() {
         System.out.println(nama + "\t" + nim + "\t" + kelas + "\t" + ipk);
     }
-}
+} 

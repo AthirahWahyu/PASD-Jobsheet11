@@ -1,64 +1,24 @@
 package Pertemuan12;
-import java.util.Scanner;
 
 public class SLLMain03 {
     public static void main(String[] args) {
         SingleLinkedList03 sll = new SingleLinkedList03();
-        Scanner sc03 = new Scanner (System.in);
-        int pilih;
 
-        do {
-            System.out.println("\n--- Menu Linked List Mahasiswa ---");
-            System.out.println("1. Tambah Depan (addFirst)");
-            System.out.println("2. Tambah Belakang (addLast)");
-            System.out.println("3. Tambah Setelah Nama (insertAfter)");
-            System.out.println("4. Tambah pada Indeks (insertAt)");
-            System.out.println("5. Cetak Semua Data");
-            System.out.println("6. keluar");
-            System.out.print("Pilih menu (1-6): ");
-            pilih = sc03.nextInt();
-            sc03.nextLine();
+        Mahasiswa03 mhs1 = new Mahasiswa03("24212200",  "Alvaro", "1A", 4.0);
+        Mahasiswa03 mhs2 = new Mahasiswa03("22212202",  "Cintia", "3C", 3.5);
+        Mahasiswa03 mhs3 = new Mahasiswa03("23212201",  "Bimon", "2B", 3.8);
+        Mahasiswa03 mhs4 = new Mahasiswa03("21212203",  "Dirga", "4D", 3.6);
 
-            if (pilih >= 1 && pilih <= 4) {
-                // Proses Input Data Mahasiswa
-                System.out.print("NIM   : ");
-                String nim = sc03.nextLine();
-                System.out.print("Nama  : ");
-                String nama = sc03.nextLine();
-                System.out.print("Kelas : ");
-                String kelas = sc03.nextLine();
-                System.out.print("IPK   : ");
-                double ipk = sc03.nextDouble();
-                sc03.nextLine();
+        sll.print(); // kondisi kosong
 
-                Mahasiswa03 mhs = new Mahasiswa03(nim, nama, kelas, ipk);
+        sll.addFirst(mhs4); // menambah Dirga
+        sll.print();
 
-                switch (pilih) {
-                    case 1:
-                        sll.addFirst(mhs);
-                        break;
-                    case 2:
-                        sll.addLast(mhs);
-                        break;
-                    case 3:
-                        System.out.print("Masukkan Nama Key (Mahasiswa sebelumnya): ");
-                        String key = sc03.nextLine();
-                        sll.insertAfter(key, mhs);
-                        break;
-                    case 4: 
-                        System.out.print("Masukkan Indeks Tujuan: ");
-                        int idx = sc03.nextInt();
-                        sll.insertAt(idx, mhs);
-                        break;
-                }
-                System.out.println("Data berhasil ditambahkan.");
-            } else if (pilih == 5) {
-                sll.print();
-            }
-            
-        } while (pilih != 6);
+        sll.addLast(mhs1); // menambah Alvaro di akhir
+        sll.print();
 
-        System.out.println("Program Berhenti.");
-        sc03.close();
+        sll.insertAfter("Dirga", mhs3); // menambah Bimon setelah Dirga
+        sll.insertAt(1, mhs2); // menambah Cintia di index 1 (sebelum Bimon
+        sll.print();
     }
 }
