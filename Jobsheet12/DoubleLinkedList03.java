@@ -73,4 +73,17 @@ public class DoubleLinkedList03 {
             current = current.next;
         }
     }
+
+    public void printRreverse() {
+        if (isEmpty()) {
+            System.out.println("Linked List masih kosong.");
+            return;
+        }
+        System.out.println("Data dari belakang ke depan:");
+        Node03 current = tail;
+        while (current != null) {
+            current.data.tampil();
+            current = current.prev;  
+        }
+    }
 }
