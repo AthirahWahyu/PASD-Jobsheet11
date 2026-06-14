@@ -168,5 +168,62 @@ public class BinaryTree03 {
             }
         }
     }
-}
+    public void addRekursif(Mahasiswa03 mhs) {
+        root = addRekursifHelper(root, mhs);
+    }
 
+    private Node03 addRekursifHelper(Node03 current, Mahasiswa03 mhs) {
+        if (current == null) {
+            return new Node03(mhs);
+        }
+        if (mhs.ipk < current.mahasiswa.ipk) {
+            current.left = addRekursifHelper(current.left, mhs);
+        } else if (mhs.ipk > current.mahasiswa.ipk) {
+            current.right = addRekursifHelper(current.right, mhs);
+        }
+        return current;
+    }
+
+    public void cariMinIPK() {
+        if (isEmpty()) {
+            System.out.println("Tree kosong!");
+            return;
+        }
+        Node03 current = root;
+        // Node paling kiri pada BST adalah nilai terkecil
+        while (current.left !=  null) {
+            current = current.left;
+        }
+        System.out.print("Mahasiswa dnegan IPK terkecil: ");
+        current.mahasiswa.tampilInformasi();
+    }
+
+    public void cariMaxIPK() {
+        if (isEmpty()) {
+            System.out.println("Tree kosong!");
+            return;
+        }
+        Node03 current = root;
+        // Node paling kanan pada BST adalah nilai terbesar
+        while (current.right != null) {
+            current = current.right;
+        }
+        System.out.print("Mahasiswa dengan IPK Terbesar: ");
+        current.mahasiswa.tampilInformasi();
+    }
+
+    public void tampilMahasiswaIPKdiAtas(double ipkBatas) {
+        System.out.println("Daftar Mahasiswa dengan IPK di atas " + ipkBatas + ":");
+        tampilIPKdiAtasHelper(root, ipkBatas);
+    }
+
+    private void tampilIPKdiAtasHelper(Node03 node, double ipkBatas) {
+        if (node != null) {
+            tampilIPKdiAtasHelper(node.left, ipkBatas);
+            if (node.mahasiswa.ipk > ipkBatas) {
+                node.mahasiswa.tampilInformasi();
+            }
+            tampilIPKdiAtasHelper(node.right, ipkBatas);
+        }
+    }
+}

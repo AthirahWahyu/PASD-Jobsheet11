@@ -1,25 +1,57 @@
 package Pertemuan14;
 
 public class BinaryTreeArray03 {
-    Mahasiswa03[] dataMahasiswa;
+    int[] data;
     int idxLast;
 
-    public BinaryTreeArray03() {
-        this.dataMahasiswa = new Mahasiswa03[10];
+    public BinaryTreeArray03(int size) {
+        data = new int[size];
+        idxLast = -1;
     }
 
-    void populateData (Mahasiswa03 dataMhs[], int idxLast) {
-        this.dataMahasiswa = dataMhs;
-        this.idxLast = idxLast;
+    public void populateData(int[] dataInput, int last) {
+        this.data = dataInput;
+        this.idxLast = last;
     }
 
-    void traverseInOrder(int idxStart) {
+    public void add(int element) {
+        if (idxLast >= data.length -1) {
+            System.out.println("Array Tree sudah penuh!");
+            return;
+        }
+        idxLast++;
+        data[idxLast] = element;
+    }
+
+    public void traverseInOrder(int idxStart) {
         if (idxStart <= idxLast) {
-            if (dataMahasiswa[idxStart] != null) {
-                traverseInOrder(2*idxStart+1);
-                dataMahasiswa[idxStart].tampilInformasi();
-                traverseInOrder(2*idxStart+2);   
+            if (data[idxStart] != 0) {
+                traverseInOrder(2 * idxStart + 1);
+                System.out.print(data[idxStart] + " ");
+                traverseInOrder(2 * idxStart + 2);
+            }  
+        }
+    }
+
+    public void traversePreOrder(int idxStart) {
+        if (idxStart <= idxLast) {
+            if (data[idxStart] != 0) {
+                System.out.print(data[idxStart] + " ");
+                traversePreOrder(2 * idxStart + 1);
+                traversePreOrder(2 * idxStart + 2);
             }
         }
     }
+
+    public void traversePostOrder(int idxStart) {
+        if (idxStart <= idxLast) {
+            if (data[idxStart] != 0) {
+                traversePostOrder(2 * idxStart + 1);
+                traversePostOrder(2 * idxStart + 2);
+                System.out.print(data[idxStart] + " ");   
+            }   
+        }
+    }
 }
+
+
