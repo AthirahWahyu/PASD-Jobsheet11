@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import java.util.Collections;
+import java.util.Comparator;
+
 public class ListMahasiswa {
     List<Mahasiswa> mahasiswas = new ArrayList<>();
 
@@ -25,14 +28,16 @@ public class ListMahasiswa {
         });    
     }
 
-    int linearSearch(String nim) {
-        for (int i = 0; i < mahasiswas.size(); i++) {
-            if (nim.equals(mahasiswas.get(i).nim)) {
-                return i;
-            }
-        }
-        return -1;
+    // Binary Search 
+    int binarySearch(String nim) {
+        Collections.sort(mahasiswas, Comparator.comparing(m -> m.nim));
+
+        return Collections.binarySearch(
+            mahasiswas,
+            new Mahasiswa(nim, "", ""),
+            Comparator.comparing(m -> m.nim));
     }
+
 
     public static void main(String[] args) {
         
@@ -50,7 +55,7 @@ public class ListMahasiswa {
     lm.tampil();
     
     // update mahasiswa
-    lm.update(lm.linearSearch("201235"), new Mahasiswa("201235", "Akhleema Lela", "021xx2"));
+    lm.update(lm.binarySearch("201235"), new Mahasiswa("201235", "Akhleema Lela", "021xx2"));
 
     System.out.println();
 
