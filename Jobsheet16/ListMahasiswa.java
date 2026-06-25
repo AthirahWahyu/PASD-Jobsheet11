@@ -38,6 +38,19 @@ public class ListMahasiswa {
             Comparator.comparing(m -> m.nim));
     }
 
+    // Sorting Ascending
+    void sortingAscending() {
+        Collections.sort(mahasiswas,
+            Comparator.comparing(m -> m.nama));
+    }
+
+    // Sorting Descending 
+    void sortingDescending() {
+        Collections.sort(mahasiswas,
+            Comparator.comparing((Mahasiswa m) -> m.nama)
+            .reversed());
+    }
+
 
     public static void main(String[] args) {
         
@@ -52,6 +65,14 @@ public class ListMahasiswa {
         lm.tambah(m, m1, m2);
         
     // menampilkan list mahasiswa
+    lm.tampil();
+
+    System.out.println("\nSorting Ascending");
+    lm.sortingAscending();
+    lm.tampil();
+
+    System.out.println("\nSorting Descending");
+    lm.sortingDescending();
     lm.tampil();
     
     // update mahasiswa
