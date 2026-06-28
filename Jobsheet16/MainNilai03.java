@@ -44,7 +44,8 @@ public class MainNilai03 {
             System.out.println("2. Tampil Nilai");
             System.out.println("3. Mencari Nilai Mahasiswa");
             System.out.println("4. Urut Data Nilai");
-            System.out.println("5. Keluar");
+            System.out.println("5. Hapus Data Mahasiswa");
+            System.out.println("6. Keluar");
             System.out.println("-----------------------------------------------");
 
             System.out.print("Pilih : ");
@@ -66,13 +67,18 @@ public class MainNilai03 {
                 case 4:
                     urutNilai();
                     break;
-                
+
                 case 5:
+                    hapusDataQueue();
+                    break;
+                
+                case 6:
                     System.out.println("Program selesai");
                     break;
+
             }
             
-        } while (pilih != 5);
+        } while (pilih != 6);
     }
 
     static void inputNilai() {
@@ -200,5 +206,21 @@ public class MainNilai03 {
 
             System.out.printf("%-8s %-15s %-35s %-5d %-8.2f\n", n.mahasiswa.nim, n.mahasiswa.nama, n.matkul.namaMK, n.matkul.sks, n.nilai);
         }
+    }
+
+    static void hapusDataQueue() {
+        if (daftarNilai.isEmpty()) {
+            System.out.println("\nData nilai masih kosong!");
+            return;
+        }
+
+        Nilai03 hapus = daftarNilai.remove(0);
+
+        System.out.println("\nData pertama berhasil dihapus");
+        System.out.println("-----------------------------------------------");
+        System.out.println("NIM     : " + hapus.mahasiswa.nim);
+        System.out.println("Nama    : " + hapus.mahasiswa.nama);
+        System.out.println("MK      : " + hapus.matkul.namaMK);
+        System.out.println("Nilai   : " + hapus.nilai);
     }
 }
